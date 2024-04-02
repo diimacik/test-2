@@ -29,3 +29,8 @@ li a:hover:not(.active) {
 .active {
     background-color: #b87f14;
 }
+
+.news {
+    padding: 20px;
+    
+}

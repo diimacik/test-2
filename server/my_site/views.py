@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import NewsAdmin
 
 # Create your views here.
 def index(request):
-    return render (request, 'index.html')
+    news = NewsAdmin.objects.all()
+    return render (request, 'index.html', {'news':news})
