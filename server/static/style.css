@@ -8,6 +8,7 @@ ul{
     padding: 0;
     overflow: hidden;
     background-color: #222020;
+    margin-bottom: 0px;
 }
 
 li {
@@ -27,10 +28,17 @@ li a:hover:not(.active) {
 }
 
 .active {
-    background-color: #b87f14;
+    background-color: #ffe1ab;
+    color: black;
 }
 
 .news {
+    margin: 10px;
     padding: 20px;
-    
+    background-color: #ffe1ab;
+    border-radius: 10px;
+}
+.main{
+
+    padding: 10px;
 }
