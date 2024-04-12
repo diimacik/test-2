@@ -15,7 +15,7 @@ li {
     float: left;
 }
 
-li a {
+li a:is(:link, :active, :visited) {
     display: block;
     color: white;
     text-align: center;
@@ -23,11 +23,8 @@ li a {
     text-decoration: none;
 }
 
-li a:hover:not(.active) {
-    background-color: #111;
-}
 
-.active {
+a:is(:link, :active, :visited).active {
     background-color: #ffe1ab;
     color: black;
 }
