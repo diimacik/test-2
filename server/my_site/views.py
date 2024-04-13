@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import NewsAdmin
+from .forms import SignUpForm
 
 # Create your views here.
 def index(request):
@@ -32,3 +33,21 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+def register_user(request):
+    form = SignUpForm()
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            #first_name = form.cleaned_data['first_name']
+            #last_name = form.cleaned_data['last_name']
+            #email = form.cleaned_data['email']
+            # Login in user
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, ('You have successfully reqisterd! Wellcom'))
+            return redirect ('index')
+    return render(request, 'register.html', {'form':form})
