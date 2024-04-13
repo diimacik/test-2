@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main">
+    <h1>Web site news</h1>
+
+        <div class="news">
+            <h3>{{news.name}}</h3>
+            <h3>{{news.content}}</h3>
+            <h3>{{news.create_at}}</h3>
+        </div>
+
+
+</div>
+{% endblock %}
