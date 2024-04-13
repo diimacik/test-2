@@ -33,7 +33,17 @@ a:is(:link, :active, :visited).active {
     margin: 10px;
     padding: 20px;
     background-color: #ffe1ab;
-    border-radius: 10px;
+    
+}
+.news a{
+    background-color: #222020;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+}
+.news a:hover{
+    
+    color: #ffe1ab;
 }
 .main{
 

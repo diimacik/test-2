@@ -8,7 +8,7 @@
         <div class="news">
             <h3>{{new.name}}</h3>
             <h3>{{new.content}}</h3>
-            <a href="{% url 'admin-post' new.id %}">read more</a>
+            <a href="{% url 'admin-post' new.id %}" class="read">read more</a>
             <h3>{{new.create_at}}</h3>
         </div>
 
