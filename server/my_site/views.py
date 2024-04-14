@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .models import NewsAdmin
+from .models import NewsAdmin, Comment
 from .forms import SignUpForm
 
 # Create your views here.
@@ -11,7 +11,8 @@ def index(request):
 
 def NewsPost(request, pk):
     news = NewsAdmin.objects.get(id=pk)
-    return render (request, 'news-admin.html', {'news':news})
+    comments = Comment.objects.all()
+    return render (request, 'news-admin.html', {'news':news, 'comments':comments})
 
 def about(request):
     return render (request, 'about.html')

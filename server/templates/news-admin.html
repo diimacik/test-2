@@ -9,6 +9,11 @@
             <h3>{{news.name}}</h3>
             <h3>{{news.content}}</h3>
             <h3>{{news.create_at}}</h3>
+            {% for comment in comments %}
+                <h4>{{comment.author}}</h4>
+                <p>{{comment.text}}</p>
+                <p>{{comment.created_date}}</p>
+            {% endfor %}
         </div>
 
 
