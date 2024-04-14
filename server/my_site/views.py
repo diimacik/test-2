@@ -11,7 +11,7 @@ def index(request):
 
 def NewsPost(request, pk):
     news = NewsAdmin.objects.get(id=pk)
-    comments = Comment.objects.all()
+    comments = Comment.objects.filter(post=news)
     return render (request, 'news-admin.html', {'news':news, 'comments':comments})
 
 def about(request):
