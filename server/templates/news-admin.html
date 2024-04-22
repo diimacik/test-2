@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block content %}
 <div class="main">
     <h1>Web site news</h1>
@@ -9,7 +10,12 @@
             <h3>{{news.name}}</h3>
             <h3>{{news.content}}</h3>
             <h3>{{news.create_at}}</h3>
-            {% for comment in comments %}
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit">add comment</button>
+            </form>
+            {% for comment in comments|dictsortreversed:"created_date" %}
                 <h4>{{comment.author}}</h4>
                 <p>{{comment.text}}</p>
                 <p>{{comment.created_date}}</p>

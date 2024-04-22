@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from .models import Comment
 
 class CommentForm(forms.ModelForm):
-    module = Comment
-    fields = ['text']
+    class Meta:
+        model = Comment
+        fields = ['text']
 
 class SignUpForm(UserCreationForm):
 

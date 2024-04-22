@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import NewsAdmin, Comment
-from .forms import SignUpForm
+from .forms import SignUpForm, CommentForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -12,7 +14,24 @@ def index(request):
 def NewsPost(request, pk):
     news = NewsAdmin.objects.get(id=pk)
     comments = Comment.objects.filter(post=news)
-    return render (request, 'news-admin.html', {'news':news, 'comments':comments})
+    if request.user.is_authenticated:
+        form = CommentForm(request.POST or None)
+    # Handle comment submission
+        if request.method == 'POST':
+        
+            if form.is_valid():
+                new_comment = form.save(commit=False)
+                new_comment.post = news
+            
+                
+                new_comment.author = request.user
+                new_comment.save()
+                return redirect('admin-post', pk=pk)
+            
+            return redirect(request('index'))
+    else:
+        form = CommentForm()
+    return render (request, 'news-admin.html', {'news':news, 'comments':comments, 'form':form})
 
 def about(request):
     return render (request, 'about.html')
