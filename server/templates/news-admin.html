@@ -19,6 +19,9 @@
                 <h4>{{comment.author}}</h4>
                 <p>{{comment.text}}</p>
                 <p>{{comment.created_date}}</p>
+                {% if request.user.username == comment.author.username %}
+                    <a href="{% url 'delete_comment' comment.id %}">Delete</a>
+                {% endif %}
             {% endfor %}
         </div>
 

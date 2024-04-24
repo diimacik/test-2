@@ -33,6 +33,23 @@ def NewsPost(request, pk):
         form = CommentForm()
     return render (request, 'news-admin.html', {'news':news, 'comments':comments, 'form':form})
 
+def delete_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        # Check to see if you own the comment
+        if request.user.username == comment.author.username:
+            # Delete the Comment
+            comment.delete()
+            messages.success(request, ('The Comment has been Deleted!'))
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, ("You Don't Own That Comment!"))
+            return redirect('index')
+    else:
+        messages.success(request, ("Please Log In To Continue..."))
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
 def about(request):
     return render (request, 'about.html')
 
