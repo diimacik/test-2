@@ -48,6 +48,29 @@ def delete_comment(request, pk):
     else:
         messages.success(request, ("Please Log In To Continue..."))
         return redirect(request.META.get('HTTP_REFERER'))
+    
+def edit_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        if request.user.username == comment.author.username:
+            form = CommentForm(request.POST or None, instance=comment)
+            if request.method == 'POST':
+                if form.is_valid():
+                    comment = form.save(commit=False)
+                    comment.author = request.user
+                    comment.save()
+                    messages.success(request, ("YOUR Comment has been Updated!"))
+                    return redirect('admin-post', pk=comment.post.pk)
+            else:
+                return render(request, 'edit_comment.html', {'form':form, 'comment':comment, })
+        else:
+            messages.success(request, ("You Don't Own That Comment!"))
+            return redirect('index')
+    else:
+        messages.success(request, ("Please Log In To Continue..."))
+        return redirect('index')
+    
+        
 
 
 def about(request):

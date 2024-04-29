@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {{comment.text}}
+    {% if form %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Edit comment</button>
+
+    </form>
+    {% endif %}
+    
+{% endblock %}
