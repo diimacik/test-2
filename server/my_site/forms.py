@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from .models import Comment
 
 class CommentForm(forms.ModelForm):
+    text = forms.CharField(
+        label = "",
+        widget=forms.Textarea
+            (attrs={'class':'comment-form','style':'max-width:100%;min-width:450px;max-height:200px;', 
+                    'placeholder':'write your comment'
+                    })
+    )
+
     class Meta:
         model = Comment
         fields = ['text']

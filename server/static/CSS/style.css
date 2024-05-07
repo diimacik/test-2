@@ -32,8 +32,11 @@ a:is(:link, :active, :visited).active {
 .news {
     margin: 10px;
     padding: 20px;
-    background-color: #ffe1ab;
-    
+    background-color: #ffe1ab;    
+}
+.news hr {
+    padding: 0;
+    margin: 0;
 }
 .news a{
     background-color: #222020;
@@ -43,6 +46,16 @@ a:is(:link, :active, :visited).active {
 }
 .news a:hover{
     
+    color: #ffe1ab;
+}
+.news button{
+    background-color: #222020;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+.news button:hover{
     color: #ffe1ab;
 }
 .main{

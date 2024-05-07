@@ -2,14 +2,17 @@
 {% load static %}
 
 {% block content %}
-    {{comment.text}}
-    {% if form %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Edit comment</button>
-
-    </form>
-    {% endif %}
+    <div class="news">
+        <h1>Your old comment:</h1><h2> {{comment.text}}</h2>
     
+        {% if form %}
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Edit comment</button>
+
+        </form>
+
+        {% endif %}
+    </div>
 {% endblock %}
